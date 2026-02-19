@@ -1,0 +1,30 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    border: 1px solid #000;
+    padding: 10px;
+    background-color: lightblue;
+}
+
+td {
+    border: 1px solid #000;
+    padding: 10px;
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: center;
+}
+
+button {
+    margin-top: 20px;
+    display: block;
+    width: 100px;
+    margin-left: auto;
+}
