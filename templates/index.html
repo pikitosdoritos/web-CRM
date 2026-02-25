@@ -5,8 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="shortcut icon" href="/static/favicon.png" type="image/x-icon">
     <title>CRM-Base (HR-Recruiment)</title>
 </head>
+
+<script>
+    let selectedRow = null;
+
+    function selectRow(row) {
+        if (selectedRow) {
+            selectedRow.style.backgroundColor = "";
+        }
+
+        selectedRow = row;
+        selectedRow.style.backgroundColor = "#ffdddd";
+        
+        document.getElementById("delete_id").value = row.dataset.id;
+    }
+</script>
 
 <body>
     <form action="/" method="POST">
@@ -38,8 +54,9 @@
                 </tr>
             </tbody>
         </table>
-        <button class="submit">Submit</button>
-        <button class="del">Delete</button>
+        <input type="hidden" name="delete_id" id="delete_id">
+        <button class="submit" type="submit">Submit</button>
+        <button class="del" type="submit" formaction="/delete" formmethod="POST">Delete</button>
     </form>
 </body>
 

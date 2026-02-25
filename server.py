@@ -27,7 +27,7 @@ def generate_rows():
     
     for c in clients:
         rows += f"""
-        <tr>
+        <tr data-id="{c.get("id")}" onclick="selectRow(this)">
             <td>{c.get("id")}</td>
             <td>{escape(c["fullname"])}</td>
             <td>{escape(c["dob"])}</td>
@@ -117,6 +117,23 @@ class CRMHandler(BaseHTTPRequestHandler):
             self.end_headers()
             
             return
+        
+        if self.path == "/delete":
+                content_length = int(self.headers["Content-Length"])
+                body = self.rfile.read(content_length).decode()
+                data = parse_qs(body)
+                
+                delete_id = data.get("delete_id", [""])[0]
+                
+                if delete_id:
+                    clients = load_clients()
+                    clients = [c for c in clients if c["id"] != delete_id]
+                    save_clients(clients)
+                    
+                self.send_response(303)
+                self.send_header("Location", "/")
+                self.end_headers()
+                return
         
 if __name__ == "__main__":
     server = HTTPServer(("127.0.0.1", PORT), CRMHandler)
