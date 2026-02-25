@@ -133,6 +133,7 @@ class CRMHandler(BaseHTTPRequestHandler):
                 self.send_response(303)
                 self.send_header("Location", "/")
                 self.end_headers()
+                
                 return
         
 if __name__ == "__main__":
