@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form action="">
+    <form action="/" method="POST">
         <table>
             <thead>
                 <tr>
@@ -25,6 +25,17 @@
             </thead>
             <tbody>
                 {{ROWS}}
+
+                <tr>
+                    <td></td>
+                    <td><input type="text" name="fullname"></td>
+                    <td><input type="date" name="dob"></td>
+                    <td><input type="text" name="phone"></td>
+                    <td><input type="email" name="email"></td>
+                    <td><input type="text" name="position"></td>
+                    <td><input type="date" name="date"></td>
+                    <td><input type="text" name="status"></td>
+                </tr>
             </tbody>
         </table>
         <button>Submit</button>
