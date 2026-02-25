@@ -7,6 +7,10 @@ body {
     color: #1f2937;
 }
 
+form {
+    text-align: right;
+}
+
 /* ===== Таблица ===== */
 table {
     width: 100%;
@@ -64,8 +68,7 @@ input:focus {
 }
 
 /* ===== Кнопка ===== */
-button {
-    display: block;
+.submit {
     margin-left: auto;
     margin-top: 10px;
     padding: 14px 28px;
@@ -83,9 +86,34 @@ button {
     transition: 0.3s ease;
 }
 
-button:hover {
+.submit:hover {
     transform: translateY(-3px);
     box-shadow:
         0 20px 45px rgba(37, 99, 235, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.del {
+    margin-left: auto;
+    margin-top: 10px;
+    padding: 14px 28px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background: linear-gradient(145deg, #f63b3b, #eb2525);
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    box-shadow:
+        0 15px 35px rgba(235, 37, 37, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    transition: 0.3s ease;
+}
+
+.del:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 20px 45px rgba(235, 37, 37, 0.35),
         inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
