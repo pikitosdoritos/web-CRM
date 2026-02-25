@@ -25,10 +25,10 @@ def generate_rows():
     
     clients = load_clients()
     
-    for i, c in enumerate(clients, start=1):
+    for c in clients:
         rows += f"""
         <tr>
-            <td>{i}</td>
+            <td>{c.get("id")}</td>
             <td>{escape(c["fullname"])}</td>
             <td>{escape(c["dob"])}</td>
             <td>{escape(c["phone"])}</td>
