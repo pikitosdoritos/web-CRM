@@ -230,6 +230,10 @@ button:disabled {
     background: rgba(0, 0, 0, 0.05);
 }
 
+.hidden-el {
+    display: none !important;
+}
+
 /* Status Badges - extra flair */
 .status {
     padding: 4px 10px;
