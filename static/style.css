@@ -1,119 +1,257 @@
-/* ===== Общий фон ===== */
-body {   
+/* ===== Modern CRM Stylesystem ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary: #3b82f6;
+    --primary-dark: #2563eb;
+    --danger: #ef4444;
+    --danger-dark: #dc2626;
+    --success: #10b981;
+    --success-dark: #059669;
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
+    --bg-main: #f3f4f6;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     min-height: 100vh;
+    background: radial-gradient(circle at top right, #e0e7ff, #f3f4f6);
+    font-family: 'Inter', sans-serif;
+    color: var(--text-primary);
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: var(--glass-shadow);
+    padding: 32px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    background: linear-gradient(135deg, #e6f0ff, #f8fbff);
-    font-family: "Inter", "Segoe UI", sans-serif;
-    color: #1f2937;
+    margin-bottom: 32px;
+    gap: 20px;
 }
 
+h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #1e40af, #3b82f6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.search-box {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+/* ===== CRM Table ===== */
 form {
-    text-align: right;
+    display: flex;
+    flex-direction: column;
 }
 
-/* ===== Таблица ===== */
 table {
     width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-    margin-top: 30px;
-    border-radius: 20px;
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(15px);
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin-bottom: 24px;
 }
 
-/* Заголовки */
 th {
-    padding: 18px;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 13px;
     font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 0.5px;
-    color: #1e40af;
-    background: rgba(219, 234, 254, 0.7);
-    text-align: center;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.05);
 }
 
-/* Ячейки */
+tbody tr {
+    background: rgba(255, 255, 255, 0.5);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+tbody tr:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.selected-row {
+    background: rgba(59, 130, 246, 0.1) !important;
+    border-left: 4px solid var(--primary);
+}
+
 td {
-    padding: 18px;
+    padding: 16px;
     font-size: 14px;
-    text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
 }
 
-/* Hover строки */
-tr:hover {
-    background: rgba(255, 255, 255, 0.8);
-    transition: 0.25s ease;
+td:first-child {
+    border-radius: 12px 0 0 12px;
 }
 
-/* ===== Поля ввода ===== */
-input {
+td:last-child {
+    border-radius: 0 12px 12px 0;
+}
+
+/* In-table form inputs */
+td input {
     width: 100%;
-    padding: 12px 14px;
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(12px);
-    font-size: 14px;
-    text-align: center;
-    outline: none;
-    transition: 0.25s ease;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    background: white;
+    font-size: 13px;
+    text-align: left !important;
 }
 
-input:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.18);
+/* ===== UI Controls ===== */
+.controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-/* ===== Кнопка ===== */
-.submit {
-    margin-left: auto;
-    margin-top: 10px;
-    padding: 14px 28px;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    background: linear-gradient(145deg, #3b82f6, #2563eb);
-    color: white;
+button {
+    padding: 12px 24px;
+    border-radius: 12px;
+    border: none;
     font-weight: 600;
     font-size: 14px;
     cursor: pointer;
-    backdrop-filter: blur(10px);
-    box-shadow:
-        0 15px 35px rgba(37, 99, 235, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.35);
-    transition: 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: grayscale(1);
+}
+
+.submit {
+    background: var(--primary);
+    color: white;
 }
 
 .submit:hover {
-    transform: translateY(-3px);
-    box-shadow:
-        0 20px 45px rgba(37, 99, 235, 0.35),
-        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    background: var(--primary-dark);
+    transform: scale(1.02);
 }
 
 .del {
-    margin-left: auto;
-    margin-top: 10px;
-    padding: 14px 28px;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    background: linear-gradient(145deg, #f63b3b, #eb2525);
-    color: white;
-    font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    box-shadow:
-        0 15px 35px rgba(235, 37, 37, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.35);
-    transition: 0.3s ease;
+    background: white;
+    color: var(--danger);
+    border: 1px solid var(--danger);
 }
 
-.del:hover {
-    transform: translateY(-3px);
-    box-shadow:
-        0 20px 45px rgba(235, 37, 37, 0.35),
-        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+.del:hover:not(:disabled) {
+    background: var(--danger);
+    color: white;
+}
+
+.edit-btn {
+    background: white;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+.edit-btn:hover:not(:disabled) {
+    background: var(--primary);
+    color: white;
+}
+
+.save {
+    background: var(--success);
+    color: white;
+}
+
+.save:hover {
+    background: var(--success-dark);
+}
+
+.clear {
+    background: transparent;
+    color: var(--text-secondary);
+}
+
+.clear:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* Status Badges - extra flair */
+.status {
+    padding: 4px 10px;
+    border-radius: 99px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.2);
 }

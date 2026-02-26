@@ -24,18 +24,30 @@ def generate_rows():
     rows = ""
     
     clients = load_clients()
+    # Sort by ID descending to show newest first
+    clients.sort(key=lambda x: int(x.get("id", 0)), reverse=True)
     
     for c in clients:
+        # Use .get() to avoid KeyError
+        id_val = c.get("id", "")
+        fullname = c.get("fullname", "")
+        dob = c.get("dob", "")
+        phone = c.get("phone", "")
+        email = c.get("email", "")
+        position = c.get("position", "")
+        date = c.get("date", "")
+        status = c.get("status", "")
+        
         rows += f"""
-        <tr data-id="{c.get("id")}" onclick="selectRow(this)">
-            <td>{c.get("id")}</td>
-            <td>{escape(c["fullname"])}</td>
-            <td>{escape(c["dob"])}</td>
-            <td>{escape(c["phone"])}</td>
-            <td>{escape(c["email"])}</td>
-            <td>{escape(c["position"])}</td>
-            <td>{escape(c["date"])}</td>
-            <td>{escape(c["status"])}</td>
+        <tr data-id="{id_val}" onclick="selectRow(this)">
+            <td>{id_val}</td>
+            <td>{escape(fullname)}</td>
+            <td>{escape(dob)}</td>
+            <td>{escape(phone)}</td>
+            <td>{escape(email)}</td>
+            <td>{escape(position)}</td>
+            <td>{escape(date)}</td>
+            <td>{escape(status)}</td>
         </tr>
         """
         
@@ -123,7 +135,7 @@ class CRMHandler(BaseHTTPRequestHandler):
                 body = self.rfile.read(content_length).decode()
                 data = parse_qs(body)
                 
-                delete_id = data.get("delete_id", [""])[0]
+                delete_id = data.get("selected_id", [""])[0]
                 
                 if delete_id:
                     clients = load_clients()
@@ -135,6 +147,36 @@ class CRMHandler(BaseHTTPRequestHandler):
                 self.end_headers()
                 
                 return
+        
+        if self.path == "/update":
+            content_length = int(self.headers["Content-Length"])
+            body = self.rfile.read(content_length).decode()
+            data = parse_qs(body)
+            
+            update_id = data.get("selected_id", [""])[0]
+            
+            if update_id:
+                clients = load_clients()
+                
+                for client in clients:
+                    if client["id"] == update_id:
+                        client["fullname"] = data.get("fullname", [""])[0]
+                        client["dob"] = data.get("dob", [""])[0]
+                        client["phone"] = data.get("phone", [""])[0]
+                        client["email"] = data.get("email", [""])[0]
+                        client["position"] = data.get("position", [""])[0]
+                        client["date"] = data.get("date", [""])[0]
+                        client["status"] = data.get("status", [""])[0]
+                        
+                        break
+
+                save_clients(clients)
+
+            self.send_response(303)
+            self.send_header("Location", "/")
+            self.end_headers()
+            
+            return
         
 if __name__ == "__main__":
     server = HTTPServer(("127.0.0.1", PORT), CRMHandler)
